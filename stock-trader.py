@@ -50,6 +50,33 @@ class orderBook:
         if (order_type == "Buy"):
             self.buy_queue.
 
+    def insertOrder(self, order):
+        if (order.order_type = "Buy"):
+            if ((not self.buy_head) or (self.buy_head.price < order.price)):
+                order.next = self.buy_head
+                self.buy_head = order
+            
+            else:
+                curr = self.buy_head
+                while (curr.next and (curr.next.price >= order.price)):
+                    curr = curr.next
+                order.next = curr.next
+                curr.next = order
+        else:
+            if ((not self.sell_head) or (self.sell_head.price > order.price)):
+                order.next = self.sell_head
+                self.sell_head = order
+            else:
+                curr = self.sell_head
+                while (curr.next and (curr.next.price <= order.price)):
+                    curr = curr.next
+                order.next = curr.next
+                curr.next = order
+    def matchOrder(self):
+        return 0
+            
+
+
 
 
 
