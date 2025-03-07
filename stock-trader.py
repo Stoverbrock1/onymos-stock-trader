@@ -12,17 +12,30 @@ class Order:
         self.next = None
 
 
-class queue:
+class Queue:
     def __init__(self):
         self.head = None
         self.tail = None
 
 
     def enqueue(self, order):
+        if (not self.head):
+            self.head = self.tail = order
+        else:
+            self.tail.next = order
+            self.tail = order
 
     def dequeue(self):
+        if (not self.head):
+            return None
+        order = self.head
+        self.head = self.head.next
+        if (not self.head):
+            self.tail = None
+        return order
 
     def empty(self):
+        return (self.head is None)
 
 
 class orderBook:
