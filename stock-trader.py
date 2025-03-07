@@ -3,13 +3,26 @@ import random
 import time
 
 
-#class order:
+class order:
+    def __init__(self, order_type, ticker, quantity, price):
+        self.order_type = order_type
+        self.ticker = ticker
+        self.quanity = quantity
+        self.price = price
+        self.next = None
 
 
-#class queue:
+class queue:
+    def __init__(self):
+        self.head = None
+        self.tail = None
 
-
-#class orderBook:
+class orderBook:
+    def __init__(self):
+        self.buy_head = None
+        self.sell_head = None
+        self.buy_queue = queue()
+        self.sell_queue = queue()
 
 
 
@@ -17,10 +30,18 @@ import time
 
 def randomOrders(order_book):
     tickers = ["STK{}".format(i) for i in range(1024)]
-    print(len(tickers))
-
+#   print(len(tickers))
+    while(True):
+       order_type = random.choice(["Buy", "Sell"])
+       ticker = random.choice(tickers)
+       quantity = random.randint(1, 100)
+       price = random.uniform(10, 500)
+       order_book.addOrder(order_type, ticker, quantity, round(price, 2))
+       time.sleep(random.uniform(0.1, 0.5))
 
 if (__name__ == "__main__"):
-    print(0)
-    order_book = 0 
-    randomOrders(order_book)
+#   print(0)
+    order_book = orderBook()
+    trading_thread = threading.Thread(target=randomOrders, args=(order_book,), daemon=True)
+    trading_thread.start()
+#   randomOrders(order_book)
