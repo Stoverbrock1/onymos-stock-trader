@@ -3,7 +3,7 @@ import random
 import time
 
 
-class order:
+class Order:
     def __init__(self, order_type, ticker, quantity, price):
         self.order_type = order_type
         self.ticker = ticker
@@ -17,12 +17,25 @@ class queue:
         self.head = None
         self.tail = None
 
+
+    def enqueue(self, order):
+
+    def dequeue(self):
+
+    def empty(self):
+
+
 class orderBook:
     def __init__(self):
         self.buy_head = None
         self.sell_head = None
         self.buy_queue = queue()
         self.sell_queue = queue()
+
+    def addOrder(self, order_type, ticker, quantity, price):
+        order = Order(order_type, ticker, quantity, price)
+        if (order_type == "Buy"):
+            self.buy_queue.
 
 
 
