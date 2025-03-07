@@ -48,7 +48,10 @@ class orderBook:
     def addOrder(self, order_type, ticker, quantity, price):
         order = Order(order_type, ticker, quantity, price)
         if (order_type == "Buy"):
-            self.buy_queue.
+            self.buy_queue.enqueue(order)
+        else:
+            self.sell_queue.enqueue(order)
+        self.insertOrder(order)
 
     def insertOrder(self, order):
         if (order.order_type = "Buy"):
